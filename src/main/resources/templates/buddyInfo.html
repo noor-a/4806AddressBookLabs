@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <!--<p th:text="'Hello, ' + ${name} + '!'" />-->
+    <h2>Add New Buddy</h2>
+<form action="#" th:action="@{/buddyInfo}" th:object="${buddy}" method="post">
+    <p>Name: <input type="text" th:field="*{name}" /></p>
+    <p>Address: <input type="text" th:field="*{address}" /></p>
+    <p>Phone Number: <input type="text" th:field="*{phoneNumber}" /></p>
+    <p><input type="submit" value="Submit"/> <input type="reset" value="Clear"/></p>
+</form>
+
+    <br><br>
+<div th:if="${not#lists.isEmpty(buddies)}">
+    <h3>Address Book</h3>
+    <table class="tg">
+        <tr>
+            <th width="120">Name</th>
+            <th width="120">Address</th>
+            <th width="120">Phone Number</th>
+        </tr>
+        <tr th:each="buddy: ${buddies}">
+            <td th:text="${buddy.name}"></td>
+            <td th:text="${buddy.address}"></td>
+            <td th:text="${buddy.phoneNumber}"></td>
+            <td><a th:href="@{/delete(name=${buddy.name})}">Delete</a> </td>
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>
