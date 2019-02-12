@@ -10,5 +10,5 @@ import java.util.List;
 @RepositoryRestResource(collectionResourceRel = "addressbook", path="addressbook.json")
 public interface AddressBookRepository extends PagingAndSortingRepository<AddressBook, Long> {
 
-    List<AddressBook> findAddressBookbyId(@Param("id") Long id);
+    List<AddressBook> findbyId(@Param("id") Long id);
 }
