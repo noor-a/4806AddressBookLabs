@@ -1,9 +1,7 @@
 package application;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,18 +9,18 @@ import java.util.List;
 public class AddressBook {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private List<BuddyInfo> buddyBook;
-
-    public AddressBook(Long id) {
-        this.id = id;
-        this.buddyBook = buddyBook;
-    }
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<BuddyInfo> buddyBook = new ArrayList<BuddyInfo>();
 
     public AddressBook() {
-        this.buddyBook = new ArrayList<BuddyInfo>();
+
+    }
+
+    public AddressBook(List<BuddyInfo>buddyBook) {
+        this.buddyBook = buddyBook;
     }
 
 
