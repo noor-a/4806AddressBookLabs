@@ -13,23 +13,23 @@ public class BuddyController {
     @Autowired
     BuddyInfoRepository repo;
 
-    @PostMapping("/buddyInfo")
+    @PostMapping("/addressbook")
     public String addBuddy(@ModelAttribute BuddyInfo buddyInfo, Model model) {
         System.out.println("Buddy Info: " + buddyInfo.getName() + " " + buddyInfo.getAddress() + " " + buddyInfo.getPhoneNumber());
-        repo.save(buddyInfo);
         model.addAttribute("buddy", new BuddyInfo());
+        repo.save(buddyInfo);
         List<BuddyInfo> buddies = repo.findAll();
         model.addAttribute("buddies", buddies);
-        return "buddyInfo";
+        return "addressbook";
     }
 
-    @GetMapping("/buddyInfo")
+    @GetMapping("/addressbook")
     public String findAllBuddy(Model model){
         model.addAttribute("buddy", new BuddyInfo());
         List<BuddyInfo> buddies = repo.findAll();
         System.out.println("Size of Buddy = " + buddies.size());
         model.addAttribute("buddies", buddies);
-        return "buddyInfo";
+        return "addressbook";
     }
 
     @RequestMapping("/delete")
@@ -39,7 +39,7 @@ public class BuddyController {
         model.addAttribute("buddy", new BuddyInfo());
         List<BuddyInfo> buddies = repo.findAll();
         model.addAttribute("buddies", buddies);
-        return "buddyInfo";
+        return "addressbook";
     }
 
 }
