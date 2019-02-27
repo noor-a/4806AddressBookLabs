@@ -6,8 +6,10 @@ import javax.persistence.Id;
 
 @Entity
 public class BuddyInfo {
+
     @Id
     private String name;
+
     private String address;
     private String phonenumber;
     private int age;
