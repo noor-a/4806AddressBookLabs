@@ -10,13 +10,13 @@ public class AddressBook {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private int id;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<BuddyInfo> buddyBook = new ArrayList<BuddyInfo>();
+    private List<BuddyInfo> buddyBook;
 
-    public AddressBook() {
-
+    public AddressBook(int id) {
+        this.id = id;
+        buddyBook = new ArrayList<BuddyInfo>();
     }
 
     public AddressBook(List<BuddyInfo>buddyBook) {
@@ -24,11 +24,11 @@ public class AddressBook {
     }
 
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -44,6 +44,7 @@ public class AddressBook {
         }
     }
 
+    @OneToMany(cascade= CascadeType.ALL)
     public List<BuddyInfo> getBuddyBook() {
         return buddyBook;
     }

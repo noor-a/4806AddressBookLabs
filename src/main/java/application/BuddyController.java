@@ -11,22 +11,25 @@ import java.util.List;
 public class BuddyController {
 
     @Autowired
-    BuddyInfoRepository repo;
+    BuddyInfoRepository brepo;
+
+    @Autowired
+    AddressBookRepository arepo;
 
     @PostMapping("/addressbook")
     public String addBuddy(@ModelAttribute BuddyInfo buddyInfo, Model model) {
         System.out.println("Buddy Info: " + buddyInfo.getName() + " " + buddyInfo.getAddress() + " " + buddyInfo.getPhoneNumber());
         model.addAttribute("buddy", new BuddyInfo());
-        repo.save(buddyInfo);
-        List<BuddyInfo> buddies = repo.findAll();
-        model.addAttribute("buddies", buddies);
+        brepo.save(buddyInfo);
+        //List<BuddyInfo> buddies = brepo.findAll();
+        //model.addAttribute("buddies", buddies);
         return "addressbook";
     }
 
     @GetMapping("/addressbook")
     public String findAllBuddy(Model model){
         model.addAttribute("buddy", new BuddyInfo());
-        List<BuddyInfo> buddies = repo.findAll();
+        List<BuddyInfo> buddies = brepo.findAll();
         System.out.println("Size of Buddy = " + buddies.size());
         model.addAttribute("buddies", buddies);
         return "addressbook";
@@ -34,11 +37,11 @@ public class BuddyController {
 
     @RequestMapping("/delete")
     public String delete(@RequestParam("name") String name, Model model){
-        BuddyInfo b = repo.findByName(name).get(0);
-        repo.delete(b);
-        model.addAttribute("buddy", new BuddyInfo());
-        List<BuddyInfo> buddies = repo.findAll();
-        model.addAttribute("buddies", buddies);
+        BuddyInfo b = brepo.findByName(name).get(0);
+        brepo.delete(b);
+        //model.addAttribute("buddy", new BuddyInfo());
+        //List<BuddyInfo> buddies = brepo.findAll();
+        //model.addAttribute("buddies", buddies);
         return "addressbook";
     }
 
