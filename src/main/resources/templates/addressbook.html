@@ -1,13 +1,14 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Getting Started: Serving Web Content</title>
+    <title>Address Book</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="buddy.js"></script>
 </head>
 <body>
-    <!--<p th:text="'Hello, ' + ${name} + '!'" />-->
     <h2>Add New Buddy</h2>
-<form action="#" th:action="@{/buddyInfo}" th:object="${buddy}" method="post">
+<form action="#" th:action="@{/}" th:object="${buddy}" method="post">
     <p>Name: <input type="text" th:field="*{name}" /></p>
     <p>Address: <input type="text" th:field="*{address}" /></p>
     <p>Phone Number: <input type="text" th:field="*{phoneNumber}" /></p>
