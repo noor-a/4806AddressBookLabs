@@ -16,23 +16,20 @@ public class BuddyController {
     @Autowired
     AddressBookRepository arepo;
 
-    @PostMapping("/addressbook")
-    public String addBuddy(@ModelAttribute BuddyInfo buddyInfo, Model model) {
-        System.out.println("Buddy Info: " + buddyInfo.getName() + " " + buddyInfo.getAddress() + " " + buddyInfo.getPhoneNumber());
+    @GetMapping("/addressbook")
+    public String addBuddy(Model model) {
         model.addAttribute("buddy", new BuddyInfo());
-        brepo.save(buddyInfo);
+        model.addAttribute("addressbook", new AddressBook());
         //List<BuddyInfo> buddies = brepo.findAll();
         //model.addAttribute("buddies", buddies);
         return "addressbook";
     }
 
-    @GetMapping("/addressbook")
-    public String findAllBuddy(Model model){
-        model.addAttribute("buddy", new BuddyInfo());
-        List<BuddyInfo> buddies = brepo.findAll();
-        System.out.println("Size of Buddy = " + buddies.size());
-        model.addAttribute("buddies", buddies);
-        return "addressbook";
+    @GetMapping("/")
+    public String greetingForm(@ModelAttribute BuddyInfo buddyInfo, @ModelAttribute AddressBook addressBook) {
+        brepo.save(buddyInfo);
+        arepo.save(addressBook);
+        return "addressBook";
     }
 
     @RequestMapping("/delete")
@@ -40,8 +37,8 @@ public class BuddyController {
         BuddyInfo b = brepo.findByName(name).get(0);
         brepo.delete(b);
         //model.addAttribute("buddy", new BuddyInfo());
-        //List<BuddyInfo> buddies = brepo.findAll();
-        //model.addAttribute("buddies", buddies);
+        List<BuddyInfo> buddies = brepo.findAll();
+        model.addAttribute("buddies", buddies);
         return "addressbook";
     }
 
