@@ -19,7 +19,7 @@ public class AddressBook {
         buddyBook = new ArrayList<BuddyInfo>();
     }
 
-    public AddressBook(List<BuddyInfo>buddyBook) {
+    public AddressBook() {
         this.buddyBook = buddyBook;
     }
 
